@@ -11,13 +11,13 @@ use geojson::{GeoJson, FeatureCollection};
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
-pub fn make_contours(data: &[f64], lx: usize, ly: usize, intervals: &[f64], use_quad_tree: bool) -> String {
+pub fn make_contours(data: &[f64], width: usize, height: usize, intervals: &[f64], use_quad_tree: bool) -> String {
     utils::set_panic_hook();
     let mut _data:Vec<Vec<f64>> = Vec::new();
-    for i in 0..lx {
+    for i in 0..height {
         let mut row = Vec::new();
-        for j in 0..ly {
-            row.push(data[i * ly + j]);
+        for j in 0..width {
+            row.push(data[i * width + j]);
         }
         _data.push(row);
     }
