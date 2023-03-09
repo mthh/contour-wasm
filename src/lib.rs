@@ -1,8 +1,8 @@
 mod utils;
 
+use contour_isobands::{Band, ContourBuilder};
+use geojson::{Feature, FeatureCollection, GeoJson};
 use wasm_bindgen::prelude::*;
-use contour_isobands::{{ContourBuilder, Band}};
-use geojson::{GeoJson, FeatureCollection};
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -11,25 +11,29 @@ use geojson::{GeoJson, FeatureCollection};
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
-pub fn make_contours(data: &[f64], width: usize, height: usize, intervals: &[f64], use_quad_tree: bool) -> String {
+pub fn make_contours(
+    data: &[f64],
+    width: usize,
+    height: usize,
+    intervals: &[f64],
+    use_quad_tree: bool,
+) -> Result<String, JsValue> {
     utils::set_panic_hook();
-    let mut _data:Vec<Vec<f64>> = Vec::new();
-    for i in 0..height {
-        let mut row = Vec::new();
-        for j in 0..width {
-            row.push(data[i * width + j]);
-        }
-        _data.push(row);
-    }
-    let res = ContourBuilder::new()
+
+    let res: Vec<Band> = ContourBuilder::new(width, height)
         .use_quad_tree(use_quad_tree)
-        .contours(&_data, intervals).unwrap();
-    let features = res.iter()
+        .contours(data, intervals)
+        .map_err(|err| JsError::new(&format!("Failed to build contours: {}", err)))?;
+
+    let features: Vec<Feature> = res
+        .iter()
         .map(|band| band.to_geojson())
         .collect::<Vec<geojson::Feature>>();
-    GeoJson::from(FeatureCollection {
+
+    Ok(GeoJson::from(FeatureCollection {
         bbox: None,
         features,
         foreign_members: None,
-    }).to_string()
+    })
+    .to_string())
 }
