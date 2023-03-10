@@ -8,8 +8,20 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://d3js.org/d3-color.v1.min.js"></script>
     <script src="https://d3js.org/d3-hsv.v0.1.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+        svg {
+            margin: 5px;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+<h1>contour-isobands-rs WASM demo</h1>
 <div class="container"></div>
 <script type="module">
     await wasm_bindgen('../pkg/contour_isobands_wasm_bg.wasm');
@@ -17,27 +29,6 @@
     const runJsIsoBands = true;
     // Some example cases we want to display
     const cases = [
-        {
-            name: 'Minimal 1',
-            intervals: [1., 3.],
-            data: [1., 3., 3., 5.],
-            w: 2,
-            h: 2,
-        },
-        {
-            name: 'Minimal 2',
-            intervals: [1., 3.],
-            data: [1., 1., 1., 5.],
-            w: 2,
-            h: 2,
-        },
-        {
-            name: 'Minimal 3',
-            intervals: [1., 3.],
-            data: [1., 1., 5., 1.],
-            w: 2,
-            h: 2,
-        },
         {
             name: 'Volcano x12',
             intervals: [90, 95, 97, 100, 102, 105, 107, 110, 115, 117, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 183, 185, 190, 195, 200],
@@ -73,21 +64,93 @@
             w: 142,
             h: 124,
         },
+        {
+            name: 'Example 10x10',
+            intervals: [0., 0.5, 2., 5.],
+            data:     [0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 1., 1., 0., 0., 0., 0., 0., 0., 0., 1., 5., 1., 0., 0., 0., 0., 0., 0., 0., 1., 5., 1., 0., 0., 0., 0., 0., 0., 0., 1., 1., 1., 0., 0., 0., 0., 0., 0., 0., 1., 1., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+            w: 10,
+            h: 10,
+        },
+        {
+            name: 'Minimal 1',
+            intervals: [1., 3.],
+            data: [1., 3., 3., 5.],
+            w: 2,
+            h: 2,
+        },
+        {
+            name: 'Minimal 2',
+            intervals: [1., 3.],
+            data: [1., 1., 1., 5.],
+            w: 2,
+            h: 2,
+        },
+        {
+            name: 'Minimal 3',
+            intervals: [1., 3.],
+            data: [1., 1., 5., 1.],
+            w: 2,
+            h: 2,
+        },
+        {
+            name: 'Minimal 4',
+            intervals: [2., 5.],
+            data: [1., 5., 1., 1.,],
+            w: 2,
+            h: 2,
+        },
+        {
+            name: 'Minimal 5',
+            intervals: [2., 5.],
+            data: [1., 5., 5., 1.,],
+            w: 2,
+            h: 2,
+        },
+        {
+            name: 'Minimal 6',
+            intervals: [1., 2.],
+            data: [1., 5., 5., 1.,],
+            w: 2,
+            h: 2,
+        },
+        {
+            name: 'Minimal 7',
+            intervals: [1., 4.],
+            data: [1., 5., 5., 1.,],
+            w: 2,
+            h: 2,
+        },
+        {
+            name: 'Minimal 8',
+            intervals: [1., 5.],
+            data: [3., 5., 5., 1.,],
+            w: 2,
+            h: 2,
+        },
+        {
+            name: 'Minimal 9',
+            intervals: [1., 3.5],
+            data: [3., 5., 5., 1.,],
+            w: 2,
+            h: 2,
+        },
     ]
 
     const use_quadtree = true;
+    const windowWidth = window.innerWidth;
+    const windowWidthDivided = windowWidth / 3;
 
-    cases.forEach(({intervals, data, w, h, name}, i) => {
+    cases.forEach(({ intervals, data, w, h, name }, i) => {
         const t0 = performance.now();
-        const res = wasm_bindgen.make_contours(
-            data,
+        const res = wasm_bindgen.makeContours(
+            new Float64Array(data),
             w,
             h,
             new Float64Array(intervals),
             use_quadtree,
         );
         const t1 = performance.now();
-        console.log("Call to wasm_bindgen.make_contours took " + (t1 - t0) + " milliseconds for case " +  i + " / " + name + " (" + data.length + " data points).");
+        console.log("Call to wasm_bindgen.makeContours took " + (t1 - t0) + " milliseconds for case " +  i + " / " + name + " (" + data.length + " data points).");
         // console.log(res);
 
         if (runJsIsoBands) {
@@ -109,8 +172,10 @@
         }
         const features = JSON.parse(res).features;
 
-        const width = 500;
-        const height = 500;
+        const width = name.indexOf('Minimal') > -1 ? (windowWidthDivided - 10) / 3 - 10 : windowWidthDivided - 15;
+        const height = width;
+        const strokeWidth = name === 'Volcano x12' ? 0 : 0.5;
+        const fillOpacity = 0.55;
         const marginBottomLabel = 0;
 
         const projection = d3
@@ -142,9 +207,9 @@
             .enter()
             .append("path")
             .style("fill", (d) => color(d.properties.min_v))
-            .style('fill-opacity', 0.55)
+            .style('fill-opacity', fillOpacity)
             .style("stroke", "black")
-            .style('stroke-width', 0.5)
+            .style('stroke-width', strokeWidth)
             .attr("d", (d) => path(d))
             .on('mouseover', function () {
                 d3.select(this).style('fill', 'red');
