@@ -3,17 +3,27 @@ name = "contour-isobands-wasm"
 version = "0.1.0"
 authors = ["Matthieu Viry <matthieu.viry@cnrs.fr>"]
 edition = "2021"
+license = "AGPL-3.0-or-later"
+
+description = "JS/WASM library to compute isobands (using marching squares algorithm)"
+repository = "https://github.com/mthh/contour-isobands-wasm"
+homepage = "https://github.com/mthh/contour-isobands-wasm"
+readme = "README.md"
+keywords = ["contour", "polygon", "isobands", "marching-squares", "geojson"]
 
 [lib]
 crate-type = ["cdylib", "rlib"]
 
 [features]
-default = ["console_error_panic_hook"]
+console_error_panic_hook = ["dep:console_error_panic_hook"]
+wee_alloc = ["dep:wee_alloc"]
 
 [dependencies]
 wasm-bindgen = "0.2.63"
 contour-isobands = { path = "../contour-isobands-rs", features = ["geojson"] }
 geojson = "0.24.0"
+serde = { version = "1.0", features = ["derive"] }
+serde-wasm-bindgen = "0.4"
 
 # The `console_error_panic_hook` crate provides better debugging of panics by
 # logging them with `console.error`. This is great for development, but requires
