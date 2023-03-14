@@ -20,7 +20,7 @@ wee_alloc = ["dep:wee_alloc"]
 
 [dependencies]
 wasm-bindgen = "0.2.63"
-contour-isobands = { path = "../contour-isobands-rs", features = ["geojson"] }
+contour-isobands = { version = "0.1.0", features = ["geojson"] }
 geojson = "0.24.0"
 serde = { version = "1.0", features = ["derive"] }
 serde-wasm-bindgen = "0.4"

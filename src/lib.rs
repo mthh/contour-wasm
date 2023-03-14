@@ -20,16 +20,6 @@ struct Options {
     y_step: Option<f64>,
 }
 
-// #[wasm_bindgen]
-// extern "C" {
-//     #[wasm_bindgen(js_namespace = console)]
-//     fn log(s: &str);
-// }
-//
-// macro_rules! console_log {
-//     ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
-// }
-
 #[wasm_bindgen(js_name = "makeContours")]
 pub fn make_contours(
     data: &[f64],
