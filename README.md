@@ -28,4 +28,4 @@ wasm-pack publish
 
 ## Demo
 
-Demonstration page is available at https://github.io/mthh/contour-isobands-wasm/.
+Demonstration page is available at https://mthh.github.io/contour-isobands-wasm/.
