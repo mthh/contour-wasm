@@ -21,11 +21,10 @@
     </style>
 </head>
 <body>
-<h1>contour-isobands-rs WASM demo</h1>
+<h1>contour-isobands-wasm demo</h1>
 <div class="container"></div>
 <script type="module">
     await wasm_bindgen('../pkg/contour_isobands_wasm_bg.wasm');
-
     const runJsIsoBands = true;
     // Some example cases we want to display
     const cases = [
@@ -143,7 +142,7 @@
     let seen = false;
     cases.forEach(({ intervals, data, w, h, name }, i) => {
         const t0 = performance.now();
-        const res = wasm_bindgen.makeContours(
+        const res = wasm_bindgen.isobands(
             new Float64Array(data),
             w,
             h,
@@ -152,7 +151,7 @@
         );
         console.log(res);
         const t1 = performance.now();
-        console.log("Call to wasm_bindgen.makeContours took " + (t1 - t0) + " milliseconds for case " +  i + " / " + name + " (" + data.length + " data points).");
+        console.log("Call to wasm_bindgen.isobands took " + (t1 - t0) + " milliseconds for case " +  i + " / " + name + " (" + data.length + " data points).");
 
         if (runJsIsoBands) {
             let d = [];
