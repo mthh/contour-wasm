@@ -5,11 +5,20 @@ declare namespace wasm_bindgen {
 	* @param {Float64Array} data
 	* @param {number} width
 	* @param {number} height
+	* @param {Float64Array} thresholds
+	* @param {any} options
+	* @returns {any}
+	*/
+	export function isolines(data: Float64Array, width: number, height: number, thresholds: Float64Array, options: any): any;
+	/**
+	* @param {Float64Array} data
+	* @param {number} width
+	* @param {number} height
 	* @param {Float64Array} intervals
 	* @param {any} options
 	* @returns {any}
 	*/
-	export function makeContours(data: Float64Array, width: number, height: number, intervals: Float64Array, options: any): any;
+	export function isobands(data: Float64Array, width: number, height: number, intervals: Float64Array, options: any): any;
 	
 }
 
@@ -17,9 +26,10 @@ declare type InitInput = RequestInfo | URL | Response | BufferSource | WebAssemb
 
 declare interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly makeContours: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => void;
-  readonly __wbindgen_malloc: (a: number) => number;
-  readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
+  readonly isolines: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => void;
+  readonly isobands: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => void;
+  readonly __wbindgen_malloc: (a: number, b: number) => number;
+  readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
 }
 

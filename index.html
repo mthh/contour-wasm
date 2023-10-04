@@ -142,15 +142,15 @@
     let seen = false;
     cases.forEach(({ intervals, data, w, h, name }, i) => {
         const t0 = performance.now();
-        const res = wasm_bindgen.makeContours(
+        const res = wasm_bindgen.isobands(
             new Float64Array(data),
             w,
             h,
             new Float64Array(intervals),
-            { use_quad_tree: false, other_option: true }
+            { use_quad_tree: true }
         );
         const t1 = performance.now();
-        console.log("Call to wasm_bindgen.makeContours took " + (t1 - t0) + " milliseconds for case " +  i + " / " + name + " (" + data.length + " data points).");
+        console.log("Call to wasm_bindgen.isobands took " + (t1 - t0) + " milliseconds for case " +  i + " / " + name + " (" + data.length + " data points).");
 
         const features = res.features;
 
