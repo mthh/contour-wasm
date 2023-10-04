@@ -50,6 +50,13 @@
         volcano,
         dem_big,
         {
+            name: 'DEM big x3',
+            intervals: dem_big.intervals,
+            data: dem_big.data.concat(dem_big.data).concat(dem_big.data),
+            w: dem_big.w,
+            h: dem_big.h * 3,
+        },
+        {
             name: 'Simple',
             intervals: [0, 4.5, 9, 13.5, 18],
             data: [18, 13, 10, 9, 10, 13, 18, 13, 8, 5, 4, 5, 8, 13, 10, 5, 2, 1, 2, 5, 10, 9, 4, 1, 12, 1, 4, 9, 10, 5, 2, 1, 2, 5, 10, 13, 8, 5, 4, 5, 8, 13, 18, 13, 10, 9, 10, 13, 18, 18, 13, 10, 1, 10, 13, 18],
