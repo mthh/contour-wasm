@@ -15,7 +15,7 @@ This module exposes two functions:
 **With default values**
 
 ```js
-const module = await wasm_bindgen('./contour_wasm_bg.wasm');
+import * as contours from 'contour-wasm';
 
 const data = [
   0, 0, 0, 0,
@@ -24,13 +24,13 @@ const data = [
   0, 0, 0, 0,
 ];
 
-const result = module.isobands(data, 4, 4, [0, 1.5]);
+const result = contours.isobands(data, 4, 4, [0, 1.5]);
 ```
 
 **With options**
 
 ```js
-const module = await wasm_bindgen('./contour_wasm_bg.wasm');
+import * as contours from 'contour-wasm';
 
 const data = [
   0, 0, 0, 0,
@@ -47,7 +47,7 @@ const options = {
   y_step: -45, // default: 1
 }
 
-const result = module.isobands(data, 4, 4, [0, 1.5], options);
+const result = contours.isobands(data, 4, 4, [0, 1.5], options);
 ```
 
 
@@ -56,7 +56,7 @@ const result = module.isobands(data, 4, 4, [0, 1.5], options);
 **With default values**
 
 ```js
-const module = await wasm_bindgen('./contour_wasm_bg.wasm');
+import * as contours from 'contour-wasm';
 
 const data = [
   0, 0, 0, 0,
@@ -65,13 +65,13 @@ const data = [
   0, 0, 0, 0,
 ];
 
-const result = module.isolines(data, 4, 4, [0, 1.5]);
+const result = contours.isolines(data, 4, 4, [0, 1.5]);
 ```
 
 **With options**
 
 ```js
-const module = await wasm_bindgen('./contour_wasm_bg.wasm');
+import * as contours from 'contour-wasm';
 
 const data = [
   0, 0, 0, 0,
@@ -87,7 +87,7 @@ const options = {
   y_step: -45, // default: 1
 }
 
-const result = module.isolines(data, 4, 4, [0, 1.5], options);
+const result = contours.isolines(data, 4, 4, [0, 1.5], options);
 ```
 
 ### Micro-benchmark
@@ -118,7 +118,7 @@ npm install contour-wasm
 ### 🛠️ Build with wasm-pack
 
 ```bash
-wasm-pack build --target no-modules
+wasm-pack build
 ```
 
 ### 🔬 Test in Headless Browsers with wasm-pack test
