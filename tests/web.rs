@@ -4,7 +4,7 @@
 
 extern crate wasm_bindgen_test;
 
-use contour_isobands_wasm::make_contours;
+use contour_wasm::make_contours;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen_test::*;
 

@@ -1,13 +1,13 @@
 [package]
-name = "contour-isobands-wasm"
+name = "contour-wasm"
 version = "0.1.0"
 authors = ["Matthieu Viry <matthieu.viry@cnrs.fr>"]
 edition = "2021"
 license = "AGPL-3.0-or-later"
 
-description = "JS/WASM library to compute isobands (using marching squares algorithm)"
-repository = "https://github.com/mthh/contour-isobands-wasm"
-homepage = "https://github.com/mthh/contour-isobands-wasm"
+description = "JS/WASM library to compute isolines and isobands (using marching squares algorithm)"
+repository = "https://github.com/mthh/contour-wasm"
+homepage = "https://github.com/mthh/contour-wasm"
 readme = "README.md"
 keywords = ["contour", "polygon", "isobands", "marching-squares", "geojson"]
 
@@ -19,18 +19,18 @@ console_error_panic_hook = ["dep:console_error_panic_hook"]
 wee_alloc = ["dep:wee_alloc"]
 
 [dependencies]
-wasm-bindgen = "0.2.63"
-contour = { version = "0.10.0", features = ["geojson"] }
+wasm-bindgen = "0.2"
+contour = { version = "0.11.0", features = ["geojson"] }
 contour-isobands = { version = "0.3.1", features = ["geojson"] }
-geojson = "0.24.0"
+geojson = "0.24"
 serde = { version = "1.0", features = ["derive"] }
-serde-wasm-bindgen = "0.5"
+serde-wasm-bindgen = "0.6.1"
 
 # The `console_error_panic_hook` crate provides better debugging of panics by
 # logging them with `console.error`. This is great for development, but requires
 # all the `std::fmt` and `std::panicking` infrastructure, so isn't great for
 # code size when deploying.
-console_error_panic_hook = { version = "0.1.6", optional = true }
+console_error_panic_hook = { version = "0.1.7", optional = true }
 
 # `wee_alloc` is a tiny allocator for wasm that is only ~1K in code size
 # compared to the default allocator's ~10K. It is slower than the default
@@ -38,7 +38,7 @@ console_error_panic_hook = { version = "0.1.6", optional = true }
 wee_alloc = { version = "0.4.5", optional = true }
 
 [dev-dependencies]
-wasm-bindgen-test = "0.3.13"
+wasm-bindgen-test = "0.3.18"
 
 [profile.release]
 opt-level = 3

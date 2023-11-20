@@ -1,4 +1,4 @@
-# Contour-isobands-wasm
+# Contour-wasm
 
 [Contour](https://crates.io/crates/contour)
 and [contour-isobands](https://crates.io/crates/contour-isobands) rust crates,
@@ -15,7 +15,7 @@ This module exposes two functions:
 **With default values**
 
 ```js
-const module = await wasm_bindgen('./contour_isobands_wasm_bg.wasm');
+const module = await wasm_bindgen('./contour_wasm_bg.wasm');
 
 const data = [
   0, 0, 0, 0,
@@ -30,7 +30,7 @@ const result = module.isobands(data, 4, 4, [0, 1.5]);
 **With options**
 
 ```js
-const module = await wasm_bindgen('./contour_isobands_wasm_bg.wasm');
+const module = await wasm_bindgen('./contour_wasm_bg.wasm');
 
 const data = [
   0, 0, 0, 0,
@@ -56,7 +56,7 @@ const result = module.isobands(data, 4, 4, [0, 1.5], options);
 **With default values**
 
 ```js
-const module = await wasm_bindgen('./contour_isobands_wasm_bg.wasm');
+const module = await wasm_bindgen('./contour_wasm_bg.wasm');
 
 const data = [
   0, 0, 0, 0,
@@ -71,7 +71,7 @@ const result = module.isolines(data, 4, 4, [0, 1.5]);
 **With options**
 
 ```js
-const module = await wasm_bindgen('./contour_isobands_wasm_bg.wasm');
+const module = await wasm_bindgen('./contour_wasm_bg.wasm');
 
 const data = [
   0, 0, 0, 0,
@@ -94,12 +94,12 @@ const result = module.isolines(data, 4, 4, [0, 1.5], options);
 
 **Performance of `isobands` function from this module compared to [MarchingSquaresJS.isoBands](https://github.com/RaumZeit/MarchingSquares.js/)**
 
-| Data size (number of points) | Number of intervals | MarchingSquares.js | contour-isobands-wasm |
-|------------------------------|---------------------|--------------------|-----------------------|
-| 5307                         | 23                  | 16ms               | **12ms**              |
-| 17608                        | 15                  | 25ms               | **15ms**              |
-| 336960                       | 14                  | 369ms              | **186ms**             |
-| 1010880                      | 14                  | 832ms              | **492ms**             |
+| Data size (number of points) | Number of intervals | MarchingSquares.js | contour-wasm |
+|------------------------------|---------------------|--------------------|--------------|
+| 5307                         | 23                  | 16ms               | **12ms**     |
+| 17608                        | 15                  | 25ms               | **15ms**     |
+| 336960                       | 14                  | 369ms              | **186ms**    |
+| 1010880                      | 14                  | 832ms              | **492ms**    |
 
 
 ## Installation instructions
@@ -107,7 +107,7 @@ const result = module.isolines(data, 4, 4, [0, 1.5], options);
 ### 📦 Install with npm
 
 ```bash
-npm install contour-isobands-wasm
+npm install contour-wasm
 ```
 
 
@@ -135,4 +135,4 @@ wasm-pack publish
 
 ## Demo
 
-Demonstration page is available at https://mthh.github.io/contour-isobands-wasm/.
+Demonstration page is available at https://mthh.github.io/contour-wasm/.
