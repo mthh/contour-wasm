@@ -93,6 +93,7 @@ const result = contours.isolines(data, 4, 4, [0, 1.5], options);
 ### Micro-benchmark
 
 **Performance of `isobands` function from this module compared to [MarchingSquaresJS.isoBands](https://github.com/RaumZeit/MarchingSquares.js/)**
+(which is also the package used internally by [turf-isobands](https://github.com/Turfjs/turf/tree/master/packages/turf-isobands)).
 
 | Data size (number of points) | Number of intervals | MarchingSquares.js | contour-wasm |
 |------------------------------|---------------------|--------------------|--------------|
