@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="./contour_isobands_wasm.js"></script>
+    <script src="./contour_wasm.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://d3js.org/d3-color.v1.min.js"></script>
     <script src="https://d3js.org/d3-hsv.v0.1.min.js"></script>
@@ -23,7 +23,7 @@
 <h1><a href="https://www.npmjs.com/package/contour-wasm">contour-wasm</a> demo</h1>
 <div class="container"></div>
 <script type="module">
-    await wasm_bindgen('./contour_isobands_wasm_bg.wasm');
+    await wasm_bindgen('./contour_wasm_bg.wasm');
 
     const runJsIsoBands = true;
     // Some example cases we want to display
