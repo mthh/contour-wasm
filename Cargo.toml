@@ -1,6 +1,6 @@
 [package]
 name = "contour-wasm"
-version = "0.4.0"
+version = "0.5.0"
 authors = ["Matthieu Viry <matthieu.viry@cnrs.fr>"]
 edition = "2021"
 license = "AGPL-3.0-or-later"
@@ -21,7 +21,7 @@ wee_alloc = ["dep:wee_alloc"]
 [dependencies]
 wasm-bindgen = "0.2"
 contour = { version = "0.12.1", features = ["geojson"] }
-contour-isobands = { version = "0.4.2", features = ["geojson"] }
+contour-isobands = { version = "0.4.3", features = ["geojson"] }
 geojson = "0.24"
 serde = { version = "1.0", features = ["derive"] }
 serde-wasm-bindgen = "0.6.1"
