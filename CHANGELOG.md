@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.4.0
+
+- Update `contour` and `contour-isobands` dependencies.
+
 ## 0.3.0
 
 - Update `contour` and `contour-isobands` dependencies.
